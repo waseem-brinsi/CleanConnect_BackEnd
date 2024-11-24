@@ -42,6 +42,7 @@ class AuthController extends Controller
                 'addressee'=> $request->addressee,
                 'phoneNumber'=> $request->phoneNumber,
                 'role'=> $request->role,
+
             ]);
 
             $token = $user->createToken('API Token')->accessToken;
