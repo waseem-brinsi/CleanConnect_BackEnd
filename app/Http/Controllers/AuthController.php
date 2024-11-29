@@ -41,7 +41,8 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'addressee'=> $request->addressee,
                 'phoneNumber'=> $request->phoneNumber,
-                'role'=> $request->role,
+                'role' => $validatedData['role'] ?? 'user',
+
 
             ]);
 

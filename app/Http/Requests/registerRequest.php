@@ -23,8 +23,14 @@ class registerRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'phoneNumber' => 'required|digits:8|unique:users,phoneNumber',
+            'email' => 'nullable|email|unique:users,email',
             'password' => 'required|string|min:5|confirmed',
+            'role' => 'nullable|string|in:user,admin',
+            'address' => 'nullable|string|max:255',
+
+
+
         ];
     }
 /*    public function messages()
