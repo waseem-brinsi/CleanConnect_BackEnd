@@ -14,10 +14,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-                'email'=>'required|email',
+                'phoneNumber'=>'required|digits:8',
                 'password'=>'required'
             ]);
-        $credentials = $request->only('email','password');
+        $credentials = $request->only('phoneNumber','password');
 
             if (Auth::attempt($credentials))
             {
@@ -41,7 +41,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'addressee'=> $request->addressee,
                 'phoneNumber'=> $request->phoneNumber,
-                'role' => $validatedData['role'] ?? 'user',
+                'role' => $request->role ?? 'user',
 
 
             ]);
