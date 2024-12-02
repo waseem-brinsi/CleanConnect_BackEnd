@@ -166,6 +166,25 @@ class AuthController extends Controller
         return response()->json(['success' => true, 'message' => 'Phone number verified successfully.'], 200);
     }
 
+
+    public function verify1(Request $request): JsonResponse
+    {
+        $request->validate([
+            'code' => 'required|digits:6',
+        ]);
+
+        $user = User::where('verification_code', $request->code)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Invalid verification code.'], 400);
+        }
+
+        // Mark the user as verified
+//        $user->is_verified = true;
+//        $user->verification_code = null; // Clear the code after verification
+//        $user->save();
+        return response()->json(['success' => true, 'message' => 'Phone number verified successfully.'], 200);
+    }
     private function sendVerificationSMS(string $phoneNumber, string $verificationCode): void
     {
         try {
