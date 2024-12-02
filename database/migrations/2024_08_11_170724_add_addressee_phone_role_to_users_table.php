@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('phoneNumber');     // Phone column
             $table->string('role')->default('user');
             $table->string('email')->nullable()->change();
+            $table->boolean('is_verified')->default(false);
+            $table->string('verification_code')->nullable();
         });
     }
 
@@ -25,7 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['addressee', 'phoneNumber']);
+            $table->dropColumn(['addressee', 'phoneNumber','is_verified','verification_code']);
         });
     }
 };
